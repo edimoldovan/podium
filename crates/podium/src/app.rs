@@ -127,9 +127,11 @@ pub struct PodiumApp {
 
 impl PodiumApp {
     pub fn new(session: Session, saves: bool) -> PodiumApp {
+        // Everything follows from the storyline: a deck without one opens on it.
+        let view = if session.deck.storyline.text.trim().is_empty() { STORYLINE } else { TITLES };
         PodiumApp {
             session,
-            view: TITLES,
+            view,
             page: 0,
             selected: None,
             editing: None,
