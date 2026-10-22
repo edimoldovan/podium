@@ -11,8 +11,8 @@ omarchy-kit, next to Post and Grido.
 - Exports: PDF, native PPTX (editable text, native charts), HTML.
 - Podium does not open `.pptx` files.
 - 16:9 pages.
-- Pages are drawn as HTML + CSS by Blitz, as Post draws mail. Podium
-  vendors its own copy, as Post does. Themes are CSS.
+- Pages are drawn as HTML + CSS by Blitz, as Post draws mail; the stock
+  crates, unpatched. Themes are CSS.
 - Claude does the AI work through Podium's MCP server; the app calls no
   AI itself. The server is registered with Claude on first start,
   without asking. Claude's edits apply immediately and land in the same

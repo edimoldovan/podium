@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Podium
+GenericName=Presentations
+Comment=Presentations built from a storyline
+Exec=podium %f
+Icon=podium
+Terminal=false
+Categories=Office;Presentation;
+Keywords=presentation;slides;deck;storyline;
+StartupNotify=true
+StartupWMClass=podium
