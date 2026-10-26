@@ -183,6 +183,7 @@ impl PodiumApp {
             match message {
                 Incoming::Open(path) => {
                     ctx.send_viewport_cmd(egui::ViewportCommand::Focus);
+                    hyprland_front();
                     if let Some(path) = path {
                         self.open(path);
                     }
@@ -686,6 +687,23 @@ impl PodiumApp {
             self.title = title;
         }
     }
+}
+
+/// Hyprland does not let a window bring itself forward, so it is asked to
+/// focus this process's window: it switches to the window's workspace and
+/// raises it over whatever covers it. Elsewhere this does nothing.
+fn hyprland_front() {
+    if std::env::var_os("HYPRLAND_INSTANCE_SIGNATURE").is_none() {
+        return;
+    }
+    let window = format!("pid:{}", std::process::id());
+    std::thread::spawn(move || {
+        let _ = std::process::Command::new("hyprctl")
+            .args(["dispatch", "focuswindow", &window])
+            .stdout(std::process::Stdio::null())
+            .stderr(std::process::Stdio::null())
+            .status();
+    });
 }
 
 /// A deck's name as a file name.
